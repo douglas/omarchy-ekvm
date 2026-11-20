@@ -3,10 +3,14 @@
 Switch your monitor's input from the Omarchy bar, so its built-in KVM moves
 your keyboard and mouse to the other computer. No monitor buttons needed.
 
+![eKVM panel](preview.png)
+
 It talks to the monitor over DDC/CI with `ddcutil` (VCP `0x60`, input source).
 Tested with a Lenovo ThinkVision P40wd-40.
 
-Left-click the bar icon to pick an input. Right-click switches to the next one.
+- Left-click the bar icon to open the panel, then pick a computer. Arrow keys
+  and Enter work too.
+- Right-click the bar icon to switch straight to the next computer.
 
 ## Requirements
 
@@ -30,16 +34,25 @@ Set these on the widget's entry in `~/.config/omarchy/shell.json`:
 }
 ```
 
-Add an optional `host` (an SSH host) to an input to wake that computer's
-display when you switch to it, so an idle screen isn't left black. It runs
-`omarchy-brightness-display on` there over SSH, so key-based login must work
-without a prompt.
+- `model` matches the name from `ddcutil detect`.
+- `value` is the monitor input. Find yours with
+  `ddcutil --model <model> capabilities` (look under `Feature: 60`). On the
+  P40wd-40, `0x11` is HDMI, `0x0f` is DisplayPort, and `0x31` is Thunderbolt.
+- `host` (optional) is an SSH host. When you switch to that input, eKVM turns
+  that computer's display back on (`omarchy-brightness-display on`), so a
+  screen that went idle isn't left black. Key-based SSH login must work
+  without a prompt.
+- `icon` (optional) is a Nerd Font glyph for the input's row.
 
-Add an optional `icon` (a Nerd Font glyph) to an input to show it in the bar
-while that input is active.
-`model` matches the name from `ddcutil detect`. Find your input values with
-`ddcutil --model <model> capabilities` (look under `Feature: 60`). On the
-P40wd-40, `0x11` is HDMI, `0x0f` is DisplayPort, and `0x31` is Thunderbolt.
+## Keyboard shortcut
+
+Bind this in Hyprland to switch to the next computer:
+
+```bash
+omarchy-shell io.github.douglas.omarchy-ekvm.input next
+```
+
+`omarchy-shell io.github.douglas.omarchy-ekvm toggle` opens or closes the panel.
 
 ## Install
 
