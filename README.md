@@ -60,6 +60,14 @@ omarchy-shell io.github.douglas.omarchy-ekvm.input next
 omarchy plugin add https://github.com/douglas/omarchy-ekvm.git --enable
 ```
 
+## Remove
+
+```bash
+omarchy plugin remove io.github.douglas.omarchy-ekvm
+```
+
+Then delete its entry from `~/.config/omarchy/shell.json` if you added settings.
+
 ## Development
 
 ```bash
