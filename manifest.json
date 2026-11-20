@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.douglas.omarchy-ekvm",
+  "name": "eKVM",
+  "version": "0.1.0",
+  "author": "Douglas Soares de Andrade",
+  "description": "Switch monitor inputs (and its built-in KVM) over DDC/CI",
+  "kinds": ["bar-widget"],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "eKVM",
+    "description": "Switch monitor inputs (and its built-in KVM) over DDC/CI",
+    "category": "System",
+    "allowMultiple": false
+  },
+  "license": "MIT"
+}
