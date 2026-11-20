@@ -102,7 +102,7 @@ BarWidget {
     id: button
     anchors.fill: parent
     bar: root.bar
-    text: "󰍹"
+    text: root.currentInput && root.currentInput.icon ? root.currentInput.icon : "󰍺"
     tooltipText: root.tooltip
     foreground: Color.foreground
     dimmed: root.error !== ""
@@ -162,7 +162,7 @@ BarWidget {
         delegate: Button {
           required property var modelData
           width: panelColumn.width
-          iconText: "󰍹"
+          iconText: modelData.icon || "󰍹"
           text: modelData.label
           foreground: root.bar.foreground
           selected: root.currentInput === modelData

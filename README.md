@@ -24,12 +24,13 @@ Set these on the widget's entry in `~/.config/omarchy/shell.json`:
   "id": "io.github.douglas.omarchy-ekvm",
   "model": "P40WD-40",
   "inputs": [
-    { "label": "Laptop", "value": "0x11" },
-    { "label": "Desktop", "value": "0x31" }
+    { "label": "Laptop", "value": "0x11", "icon": "󰌢" },
+    { "label": "Desktop", "value": "0x31", "icon": "󰇄" }
   ]
 }
 ```
 
+`icon` is an optional Nerd Font glyph shown in the bar while that input is active.
 `model` matches the name from `ddcutil detect`. Find your input values with
 `ddcutil --model <model> capabilities` (look under `Feature: 60`). On the
 P40wd-40, `0x11` is HDMI, `0x0f` is DisplayPort, and `0x31` is Thunderbolt.
