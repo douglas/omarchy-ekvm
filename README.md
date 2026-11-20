@@ -14,7 +14,7 @@ Tested with a Lenovo ThinkVision P40wd-40.
 
 ## Requirements
 
-- `ddcutil` (`sudo pacman -S ddcutil`)
+- `ddcutil`, from the Arch `extra` repository
 - Access to `/dev/i2c-*`: add yourself to the `i2c` group and load `i2c-dev`.
 - Install the plugin on every computer connected to the monitor, so you can
   switch back from whichever one is on screen.
