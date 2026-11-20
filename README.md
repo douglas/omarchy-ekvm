@@ -24,11 +24,16 @@ Set these on the widget's entry in `~/.config/omarchy/shell.json`:
   "id": "io.github.douglas.omarchy-ekvm",
   "model": "P40WD-40",
   "inputs": [
-    { "label": "Laptop", "value": "0x11" },
-    { "label": "Desktop", "value": "0x31" }
+    { "label": "Laptop", "value": "0x11", "host": "laptop" },
+    { "label": "Desktop", "value": "0x31", "host": "desktop" }
   ]
 }
 ```
+
+Add an optional `host` (an SSH host) to an input to wake that computer's
+display when you switch to it, so an idle screen isn't left black. It runs
+`omarchy-brightness-display on` there over SSH, so key-based login must work
+without a prompt.
 
 Add an optional `icon` (a Nerd Font glyph) to an input to show it in the bar
 while that input is active.

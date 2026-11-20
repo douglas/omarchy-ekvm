@@ -52,9 +52,13 @@ BarWidget {
   }
 
   function switchTo(input) {
-    if (!input || busy)
+    if (!input || busy || input === currentInput)
       return
     busy = true
+    if (input.host) {
+      wakeProcess.command = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=3", String(input.host), wakeScript]
+      wakeProcess.running = true
+    }
     switchProcess.command = ["ddcutil", "--model", model, "setvcp", "60", String(input.value)]
     switchProcess.running = true
   }
@@ -78,6 +82,17 @@ BarWidget {
         root.error = exitCode === 127 ? "ddcutil not installed" : root.model + " not found"
       }
     }
+  }
+
+  // Turns the target machine's display back on (DPMS) so it isn't black after
+  // idle. SSH sessions lack the Hyprland environment, so recover it first.
+  readonly property string wakeScript: "export XDG_RUNTIME_DIR=/run/user/$(id -u); "
+    + "export HYPRLAND_INSTANCE_SIGNATURE=$(ls -t $XDG_RUNTIME_DIR/hypr | head -1); "
+    + "omarchy-brightness-display on"
+
+  Process {
+    id: wakeProcess
+    command: ["true"]
   }
 
   Process {
